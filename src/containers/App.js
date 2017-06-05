@@ -1,14 +1,16 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react'
+import '../style/main.css';
+import Card from '../components/Card'
 
 class App extends Component {
 
   render() {
     return (
-      <div/>
+      <div className="app">
+        <Card/>
+      </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
