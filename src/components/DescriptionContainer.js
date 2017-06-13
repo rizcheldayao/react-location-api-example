@@ -13,16 +13,15 @@ export default class DescriptionContainer extends Component {
 
   componentDidMount() {
     const distance = this.props.list.response.groups[0].items[this.props.index].venue.location.distance;
-    const distanceFormula = distance/(1609.344).toFixed(2);
-    this.setState({ distanceMiles: Math.round(distanceFormula * 100) / 100});
+    const distanceFormula = distance/(1609.344);
+    this.setState({ distanceMiles: distanceFormula.toFixed(2)});
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.index !== this.props.index) {
-      console.log(this.props.index);
       const distance = this.props.list.response.groups[0].items[this.props.index].venue.location.distance;
-      const distanceFormula = distance/(1609.344).toFixed(2);
-      this.setState({ distanceMiles: Math.round(distanceFormula * 100) / 100});
+      const distanceFormula = distance/(1609.344);
+      this.setState({ distanceMiles: distanceFormula.toFixed(2)});
     }
   }
 

@@ -26,12 +26,19 @@ export default class Card extends Component {
   }
 
   editIndex() {
-    this.setState({
-      index: this.state.index + 1,
-      prefix: this.state.list.response.groups[0].items[this.state.index].venue.featuredPhotos.items[0].prefix,
-      suffix: this.state.list.response.groups[0].items[this.state.index].venue.featuredPhotos.items[0].suffix
+    if(this.state.index === (this.state.list.response.groups[0].items.length-1)) {
+      this.setState({
+        index: 0,
+        prefix: this.state.list.response.groups[0].items[0].venue.featuredPhotos.items[0].prefix,
+        suffix: this.state.list.response.groups[0].items[0].venue.featuredPhotos.items[0].suffix
+      });
+    } else {
+      this.setState({
+        index: this.state.index + 1,
+        prefix: this.state.list.response.groups[0].items[this.state.index+1].venue.featuredPhotos.items[0].prefix,
+        suffix: this.state.list.response.groups[0].items[this.state.index+1].venue.featuredPhotos.items[0].suffix
     });
-    console.log('updated', this.state.index, this.state.suffix);
+    }
   }
 
 
@@ -51,7 +58,6 @@ export default class Card extends Component {
           componentReady: true,
           prefix: responseJson.response.groups[0].items[0].venue.featuredPhotos.items[0].prefix,
           suffix: responseJson.response.groups[0].items[0].venue.featuredPhotos.items[0].suffix });
-        console.log(this.state.index);
         return responseJson;
         })
       .catch((error) => {

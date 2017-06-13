@@ -27,7 +27,6 @@ export default class App extends Component {
           longitude: position.coords.longitude
         }
       });
-      console.log('latitidue ' + this.state.coords.latitude + ' longitude ' + this.state.coords.longitude);
     }
 
     const failure = () => {
