@@ -4,34 +4,44 @@ import '../style/main.css';
 import Card from '../components/Card'
 
 export default class App extends Component {
+  state = {
+    coords: {
+      latitude: null,
+      longitude: null
+    },
+    error: null
+  }
 
   //Get latitude & longitude
   componentDidMount() {
-    const error = document.getElementsByClassName('error');
     if (!navigator.geolocation){
-      error.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+      this.setState({ error: 'Geolocation is not supported by your browser' });
       return;
     }
 
     const success = (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log('latitidue ' + latitude + 'longitude ' + longitude);
+
+      this.setState({
+        coords: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }
+      });
+      console.log('latitidue ' + this.state.coords.latitude + ' longitude ' + this.state.coords.longitude);
     }
 
     const failure = () => {
-      error.innerHTML = "<p>Unable to retrieve your location</p>";
+      this.setState({ error: 'Unable to retrieve your location' });
     }
 
     navigator.geolocation.getCurrentPosition(success, failure);
   }
 
-
   render() {
     return (
       <div className="app">
-        <div className="error"></div>
-        <Card/>
+        <Card latitude={this.state.coords.latitude}
+              longitude={this.state.coords.longitude}/>
       </div>
     );
   }

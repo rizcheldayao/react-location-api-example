@@ -7,6 +7,7 @@
     "eslint": "^2.0.0-rc.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-react": "^6.10.0",
+    "google-locations": "^0.2.0",
     "node-sass": "^4.5.0",
     "react-addons-test-utils": "^15.3.0",
     "react-scripts": "^0.6.0",
