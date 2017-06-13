@@ -11,10 +11,12 @@ export default class Card extends Component {
   }
 
   state = {
-    query: 'restaurant',
+    query: 'food',
     list: null,
-    radius: 25,
-    index: null
+    index: 0,
+    componentReady: false,
+    prefix: null,
+    suffix: null
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -23,10 +25,20 @@ export default class Card extends Component {
     }
   }
 
+  editIndex() {
+    this.setState({
+      index: this.state.index + 1,
+      prefix: this.state.list.response.groups[0].items[this.state.index].venue.featuredPhotos.items[0].prefix,
+      suffix: this.state.list.response.groups[0].items[this.state.index].venue.featuredPhotos.items[0].suffix
+    });
+    console.log('updated', this.state.index, this.state.suffix);
+  }
+
+
   fetch() {
     const latitude = this.props.latitude,
           longitude = this.props.longitude;
-
+    
     let request = new Request(URL, {
       method: 'GET',
     });
@@ -36,7 +48,10 @@ export default class Card extends Component {
       .then((responseJson) => {
         console.log(responseJson);
         this.setState({ list: responseJson,
-            index: 0 });
+          componentReady: true,
+          prefix: responseJson.response.groups[0].items[0].venue.featuredPhotos.items[0].prefix,
+          suffix: responseJson.response.groups[0].items[0].venue.featuredPhotos.items[0].suffix });
+        console.log(this.state.index);
         return responseJson;
         })
       .catch((error) => {
@@ -47,11 +62,17 @@ export default class Card extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Photo/>
-        <DescriptionContainer list={this.state.list}
+      <div>
+        {this.state.componentReady ? (
+          <div className="container">
+          <Photo photoURL={`${this.state.prefix}500x500${this.state.suffix}`}/>
+          <DescriptionContainer list={this.state.list}
             index={this.state.index}/>
-        <ButtonSet/>
+          <ButtonSet editIndex={this.editIndex.bind(this)}/>
+          </div>
+        ):(
+          <div>Loading...</div>
+        )}
       </div>
     );
   }

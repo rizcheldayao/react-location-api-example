@@ -8,31 +8,29 @@ export default class DescriptionContainer extends Component {
   }
 
   state = {
-    componentReady: false,
     distanceMiles: null
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.list !== this.props.list && prevProps.index !== this.props.index) {
-      this.fetch();
-    }
+  componentDidMount() {
+    const distance = this.props.list.response.groups[0].items[this.props.index].venue.location.distance;
+    const distanceFormula = distance/(1609.344).toFixed(2);
+    this.setState({ distanceMiles: Math.round(distanceFormula * 100) / 100});
   }
 
-  fetch() {
-    this.setState({ componentReady: true});
-    const distance = this.props.list.response.venues[this.props.index].location.distance;
-    const distanceFormula = distance/(1609.344).toFixed(2);
-    console.log(distanceFormula);
-    this.setState({ distanceMiles: Math.round(distanceFormula * 100) / 100});
-    console.log(this.props.list.response.venues[0]);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.index !== this.props.index) {
+      console.log(this.props.index);
+      const distance = this.props.list.response.groups[0].items[this.props.index].venue.location.distance;
+      const distanceFormula = distance/(1609.344).toFixed(2);
+      this.setState({ distanceMiles: Math.round(distanceFormula * 100) / 100});
+    }
   }
 
   render() {
     return (
       <div className="card-desc">
-        {this.state.componentReady ? (
         <div className="description">
-          <p>{this.props.list.response.venues[this.props.index].name}</p>
+          <p>{this.props.list.response.groups[0].items[this.props.index].venue.name}</p>
           <div className="misc">
             <div className="location">
               <svg className="icon" viewBox="0 0 24 24">
@@ -44,16 +42,10 @@ export default class DescriptionContainer extends Component {
           <svg className="icon" viewBox="0 0 24 24">
             <path fill="#FFDF00" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
           </svg>
-          {this.props.list.response.venues[this.props.index].rating ? (
-          <p>{this.props.list.response.venues[this.props.index].rating}</p>
-          ) : (
-            <p>N/A</p>
-          )}
+          <p>{this.props.list.response.groups[0].items[this.props.index].venue.rating}</p>
           </div>
         </div>
-      </div>) : (
-        <div>Loading....</div>
-      )}
+      </div>
     </div>
     );
   }
