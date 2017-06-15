@@ -1,7 +1,15 @@
 @import '_variables.scss';
 
+html {
+  background: url(../images/table.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
 body {
-  background: #f2f2f2;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   align-items: center;
@@ -9,62 +17,78 @@ body {
 }
 
 .container {
-  margin: auto; 
+  margin: auto;
   width: 400px;
-  height: auto; 
-  border-radius: 6px;
+  height: auto;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
   background: #fff;
   margin-top: 5em;
 
-  .card-photo {
-    height: auto; 
+  .front{
+    background: #fff;
+    .card-photo {
+      height: auto;
 
     .image {
       max-width: 100%;
-      border-radius: 6px; 
+      }
     }
   }
 
+  .back {
+    width: 400px;
+    height: 600px;
+    background: #fff;
+  }
+
   .description {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     margin-left: 1em;
     margin-right: 1em;
     border-bottom: #f2f2f2 solid 1px;
 
     .misc {
-      display:flex; 
-      justify-content: space-between; 
+      display:flex;
+      justify-content: space-between;
     }
 
     .star, .location {
-      display:flex; 
+      display:flex;
       align-items: center;
 
         .icon {
           display: block;
-          height: 24px; 
-          width: 24px; 
+          height: 24px;
+          width: 24px;
         }
     }
   }
 
 
   .button-set {
-    display: flex; 
-    justify-content: center; 
-    margin-top: 1em; 
-    padding-bottom: 1em; 
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    padding-bottom: 1em;
 
     .button {
       border: #f2f2f2 solid 2px;
       border-radius: 50%;
-      padding: 1em; 
-      height: 48px; 
-      width: 48px; 
+      padding: 1em;
+      height: 48px;
+      width: 48px;
     }
+     .button:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      }
   }
-  
+
 }
 
+.loading {
+    svg {
+      display: block;
+      margin: auto;
+    }
+  }

@@ -1,5 +1,11 @@
+html {
+  background: url(../images/table.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 body {
-  background: #f2f2f2;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   align-items: center;
@@ -9,17 +15,23 @@ body {
   margin: auto;
   width: 400px;
   height: auto;
-  border-radius: 6px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.45);
   background: #fff;
   margin-top: 5em; }
 
-.container .card-photo {
+.container .front {
+  background: #fff; }
+
+.container .front .card-photo {
   height: auto; }
 
-.container .card-photo .image {
-  max-width: 100%;
-  border-radius: 6px; }
+.container .front .card-photo .image {
+  max-width: 100%; }
+
+.container .back {
+  width: 400px;
+  height: 600px;
+  background: #fff; }
 
 .container .description {
   display: flex;
@@ -53,3 +65,10 @@ body {
   padding: 1em;
   height: 48px;
   width: 48px; }
+
+.container .button-set .button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.loading svg {
+  display: block;
+  margin: auto; }
