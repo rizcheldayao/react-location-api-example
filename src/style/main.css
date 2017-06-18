@@ -9,7 +9,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  color: #6B717E; }
 
 .container {
   margin: auto;
@@ -20,7 +21,11 @@ body {
   margin-top: 5em; }
 
 .container .front {
-  background: #fff; }
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background: #fff;
+  border: 15px solid #fff; }
 
 .container .front .card-photo {
   height: auto; }
@@ -29,12 +34,15 @@ body {
   max-width: 100%; }
 
 .container .back {
-  width: 400px;
+  width: auto;
   height: 100px;
   background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  margin-top: 250px;
+  margin-left: 10px;
+  margin-right: 10px; }
 
 .container .back p {
   margin: 15px; }
@@ -74,6 +82,9 @@ body {
 
 .container .button-set .button:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.loading {
+  margin-top: 150px; }
 
 .loading svg {
   display: block;
