@@ -54,7 +54,7 @@ export default class Card extends Component {
   fetch() {
     const latitude = this.props.latitude,
           longitude = this.props.longitude;
-    const URL = `https://api.foursquare.com/v2/venues/explore?v=20170608&ll=${latitude}%2C%20${longitude}&section=${this.state.query}&venuePhotos=1&client_id=WRYZGWV4GKD2BR03FSTKGFUIPCVS314Q3HA1UBQKR0MOVIIK&client_secret=JDT5IP5GXWJ1XZ3BQG4RV3DG3AU2YJPANYM0GI0GE5JDTGHO`;
+    const URL = `https://api.foursquare.com/v2/venues/explore?v=20170608&ll=${latitude}%2C%20${longitude}&section=${this.state.query}&venuePhotos=1&client_id=CLIENT_ID&client_secret=CLIENT_SECRET`;
     let request = new Request(URL, {
       method: 'GET',
     });
